@@ -1,0 +1,53 @@
+name: Deploy Laravel App
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+            git config --global --add safe.directory /var/www/education
+
+            mkdir -p /backup
+
+            if [ -f /var/www/education/.env ]; then
+                cp /var/www/education/.env /backup/.env.backup
+            fi
+
+            if [ ! -d /var/www/education/.git ]; then
+                rm -rf /var/www/education
+                git clone https://github.com/galushkavv/education_site_cn.git /var/www/education
+            else
+                cd /var/www/education
+                git reset --hard origin/master
+                git clean -fd
+                git pull origin master
+            fi
+
+            cd /var/www/education
+
+            if [ -f /backup/.env.backup ]; then
+                cp /backup/.env.backup .env
+            fi
+
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+            php artisan migrate --force
+            php artisan db:seed --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan storage:link
