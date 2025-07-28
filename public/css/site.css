@@ -1,0 +1,88 @@
+.card h4,
+.card h5 {
+    font-weight: bold;
+}
+
+
+/* Стили для стрелок управления каруселью */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 50px;
+  height: 100px;
+}
+
+/* Стили для кнопок-индикаторов карусели */
+.carousel-indicators [data-bs-target] {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #fff;
+  width: 30px;
+  height: 3px;
+}
+
+.carousel-indicators button.active {
+    background-color: #ff7700 !important;
+}
+
+/* Скрыть пункт меню на больших экранах */
+.visible-on-phones {
+  display: none;
+}
+
+.invisible-on-phones {
+  display: block;
+}
+
+/* Показать пункт меню на узких экранах */
+@media (max-width: 991.98px) {
+  .visible-on-phones {
+    display: block;
+  }
+
+  .invisible-on-phones {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+.card-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.carousel-item {
+  transition: transform 0.5s ease;
+}
+.carousel-item .col-md-4 {
+  padding: 0 5px;
+}
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.link-header {
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 0px;
+  color: inherit;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.link-header:hover {
+  color: var(--bs-blue) !important;
+  border-color: var(--bs-blue);
+}
+
+.half-width-img {
+  width: 50%;
+}
+
+.third-width-img {
+  width: 30%;
+}

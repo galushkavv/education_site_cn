@@ -1,0 +1,29 @@
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map { height: 400px; }
+    </style>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <h2 class="mb-5">联系我们</h2>
+            <h3 class="mb-4">河南海客出国留学服务有限公司</h3>
+            <p class="mb-3">地址: 河南省郑州市郑东新区郑开大道71号恒通国际广场4层410c-2号</p>
+            <p class="mb-3">联系人: 翟帅宾</p>
+            <p class="mb-3">电话: 15937920288</p>
+            <p class="mb-3">手机: 15937920288</p>
+            <p class="mb-3">微信号: 15937920288</p>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div id="map"></div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([34.774125, 113.854097], 13); // Координаты Пекина
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([34.77399, 113.85059]).addTo(map);
+    </script>
